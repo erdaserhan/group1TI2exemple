@@ -1,7 +1,7 @@
 <?php
 
 // Chargement de tous les commentaires
-function getComments(PDO $db): array
+function getComments(PDO $db): array 
 {
     $sql = "SELECT * FROM comments ORDER BY date_heure ASC";
     $query = $db->query($sql);
@@ -25,8 +25,8 @@ function addComments(PDO $db, string $nom, string $courriel, string $titre, stri
     $nom = htmlspecialchars(strip_tags(trim($nom)), ENT_QUOTES);
     // false si le courriel n'est pas valide, sinon on le garde
     $courriel = filter_var($courriel, FILTER_VALIDATE_EMAIL);
-    $titre = htmlspecialchars(strip_tags($titre), ENT_QUOTES);
-    $texte = htmlspecialchars(strip_tags(trim($texte)), ENT_QUOTES);
+    $titre = htmlspecialchars(strip_tags(trim($titre)), ENT_QUOTES);
+    $texte = htmlspecialchars(strip_tags(trim($texte)),ENT_QUOTES);
 
     // si les données ne sont pas valides, on envoie false
     if (empty($nom) || $courriel === false || empty($titre) || empty($texte)) {
