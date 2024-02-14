@@ -3,6 +3,7 @@
 require_once "../config.php";
 // chargement du modèle de la table comments
 require_once "../model/commentsModel.php";
+require_once "../model/PaginationModel.php";
 
 // connexion à la DB
 try {
@@ -30,7 +31,21 @@ if (isset($_POST['nom'], $_POST['courriel'], $_POST['titre'], $_POST['texte'])) 
 }
 
 // on récupère les commentaires
-$comments = getComments($db);
+
+
+if(isset($_GET[PAGE_VAR_GET]) && ctype_digit($_GET[PAGE_VAR_GET]))
+{
+    $page = (int) $_GET[PAGE_VAR_GET];
+}else{
+    $page = 1;
+}
+
+
+$nbComments = countComments($db);
+
+$pagination = paginationModel("./?section=livredor", PAGE_VAR_GET, $nbComments,$page,PAGINATION_BY_PG);
+
+$comments = getPaginationComments($db, $page, PAGE_BY_);
 
 // fermeture de la connexion
 $db = null;

@@ -10,6 +10,29 @@ function getComments(PDO $db): array
     return $result;
 }
 
+
+function getPaginationComments(PDO $db, int $currentPage, int $commentsByPage): array
+{
+
+    $offset = ($currentPage-1)*$commentsByPage;
+    $sql = "SELECT * FROM comments ORDER BY date_heure ASC LIMIT 0,2";
+    $query = $db->query($sql);
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    $query->closeCursor();
+    return $result;
+}
+
+
+function countComments(PDO $db): int
+{
+    $sql = "SELECT COUNT(*) AS nb FROM comments ORDER BY date_heure ASC";
+    $query = $db->query($sql);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $query->closeCursor();
+    return $result['nb'];
+}
+
+
 // Insertion d'un commentaire
 function addComments(PDO $db, string $nom, string $courriel, string $titre, string $texte): bool|string
 {
