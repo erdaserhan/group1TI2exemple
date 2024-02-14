@@ -13,6 +13,7 @@ if (isset($_GET['section'])) {
             $route = "contact.html.php";
             break;
         case "livredor":
+        case "livredor?":
             // on charge le contrôleur de gestion du livre d'or
             require "livredorController.php";
             $route = "livredor.html.php";

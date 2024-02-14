@@ -22,7 +22,7 @@ var_dump($_GET, $_POST);
 <div class="container">
     <div class="text-center mt-5">
         <h1>Group2ti2exemple | Livre d'or</h1>
-        <p class="lead">Laisser moi votre avis sur mes travaux</p>
+        <p class="lead">Laisser moi votre avis sur mes travaux (<?=$nbComments?> commentaire.s)</p>
     </div>
     <div>
         <?php
@@ -54,12 +54,15 @@ var_dump($_GET, $_POST);
         }
         ?>
 <hr>
+<?php
+    if(isset($pagination)) echo "$pagination<hr>"; 
+    ?>
     <form action="" method="POST" name="or">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nom</label>
             <input name='nom' type="text" class="form-control" id="exampleFormControlInput1" placeholder="Votre nom"
                    required>
-        </div>
+        </div> 
         <div class="mb-3">
             <label for="exampleFormControlInput2" class="form-label">Email address</label>
             <input name='courriel' type="email" class="form-control" id="exampleFormControlInput2"
