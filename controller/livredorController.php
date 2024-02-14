@@ -5,7 +5,6 @@ require_once "../config.php";
 require_once "../model/commentsModel.php";
 // chargement de la pagination
 require_once "../model/PaginationModel.php";
-require_once "../model/PaginationModel.php";
 
 // connexion à la DB
 try {
